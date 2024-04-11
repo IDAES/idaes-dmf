@@ -1,0 +1,81 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+env:
+  # --color=yes needed for colorized output to be shown in GHA logs
+  PYTEST_ADDOPTS: "--color=yes"
+  PIP_PROGRESS_BAR: "off"
+
+jobs:
+
+  code-formatting:
+    name: Check code is formatted (Black)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Black
+        run: |
+          black_requirement="$(grep '^black==' requirements-dev.txt)"
+          pip install "$black_requirement"
+      - name: Run Black to verify that the committed code is formatted
+        run: |
+          black --check .
+
+  pytest:
+    name: pytest (${{ matrix.variant }}/${{ matrix.os }}/${{ matrix.python-version }})
+    runs-on: ${{ matrix.runner-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - linux
+          - win64
+        variant:
+          - std
+          - dev
+        python-version:
+          - '3.8'
+          - '3.11'
+        include:
+          - os: linux
+            runner-version: ubuntu-22.04
+          - os: win64
+            runner-version: windows-2022
+    steps:
+
+      - name: Set up Conda env
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: idaes-dmf-env
+          python-version: ${{ matrix.python-version }}
+          miniconda-version: latest
+
+      - name: Clone repo
+        if: matrix.variant == 'dev'
+        uses: actions/checkout@v4
+
+      - name: Install (contributors)
+        if: matrix.variant == 'dev'
+        run: |
+          pip install -r requirements-dev.txt
+
+      - name: Install (standard)
+        if: matrix.variant == 'std'
+        env:
+          _pip_install_url: git+${{ github.server_url }}/${{ github.repository }}@${{ github.ref }}
+        run: |
+          pip install "idaes-dmf[testing] @ $_pip_install_url"
+
+      - name: Run pytest
+        run: |
+          pytest --pyargs idaes_dmf -v
