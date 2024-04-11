@@ -11,13 +11,13 @@
 # for full copyright and license information.
 #################################################################################
 """
-Tests for idaes.core.dmf.help module
+Tests for idaes_dmf.help module
 """
 import pytest
 from .util import tmp_dmf
 from pathlib import Path
-from idaes.core.dmf.dmfbase import DMFConfig
-from idaes.core.dmf.help import get_html_docs
+from idaes_dmf.dmfbase import DMFConfig
+from idaes_dmf.help import get_html_docs
 
 
 @pytest.mark.unit

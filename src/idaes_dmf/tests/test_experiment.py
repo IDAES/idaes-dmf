@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Tests for idaes.core.dmf.experiment module
+Tests for idaes_dmf.experiment module
 """
 import logging
 from pathlib import Path
@@ -20,8 +20,8 @@ from typing import Union
 
 import pytest
 
-from idaes.core.dmf import experiment, errors, DMF
-from idaes.core.dmf.resource import Predicates
+from idaes_dmf import experiment, errors, DMF
+from idaes_dmf.resource import Predicates
 from .util import init_logging
 
 __author__ = "Dan Gunter"
@@ -36,7 +36,7 @@ scratch_path: Union[Path, None] = None
 
 def setup_module(module):
     global scratch_dir, scratch_path
-    scratch_dir = TemporaryDirectory(prefix="idaes.core.dmf_")  # easier to remove later
+    scratch_dir = TemporaryDirectory(prefix="idaes_dmf_")  # easier to remove later
     scratch_path = Path(scratch_dir.name)
 
 

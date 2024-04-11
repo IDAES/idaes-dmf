@@ -29,8 +29,8 @@ import warnings
 import pytest
 
 # local
-from idaes.core.dmf import dmfbase
-from idaes.core.dmf.util import mkdtemp
+from idaes_dmf import dmfbase
+from idaes_dmf.util import mkdtemp
 
 __author__ = "Dan Gunter"
 
@@ -39,7 +39,7 @@ scratchdir = None
 
 def init_logging():
     """Init logging for tests."""
-    log = logging.getLogger("idaes.core.dmf")
+    log = logging.getLogger("idaes_dmf")
     h = logging.StreamHandler()
     f = logging.Formatter(fmt="%(asctime)s %(name)s [%(levelname)s] %(message)s")
     h.setFormatter(f)
@@ -80,7 +80,7 @@ def patch_modules():
         "core.process_base",
         "idaes_models",
         assign={
-            "core.process_base:ProcessBase": "idaes.core.dmf.tests.process_base:ProcessBase"
+            "core.process_base:ProcessBase": "idaes_dmf.tests.process_base:ProcessBase"
         },
     )
     # .. can add more to `sm` dict here..

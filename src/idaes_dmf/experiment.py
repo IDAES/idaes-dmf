@@ -22,8 +22,8 @@ from copy import deepcopy
 import logging
 
 # local
-from idaes.core.dmf import resource, errors
-from idaes.core.dmf.resource import Predicates, ResourceTypes
+from idaes_dmf import resource, errors
+from idaes_dmf.resource import Predicates, ResourceTypes
 
 __author__ = "Dan Gunter <dkgunter@lbl.gov>"
 

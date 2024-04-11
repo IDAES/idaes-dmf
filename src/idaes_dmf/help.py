@@ -32,7 +32,7 @@ import requests
 from lxml import html
 
 # package
-from idaes.core.dmf.dmfbase import DMFConfig
+from idaes_dmf.dmfbase import DMFConfig
 
 __author__ = "Dan Gunter <dkgunter@lbl.gov>"
 

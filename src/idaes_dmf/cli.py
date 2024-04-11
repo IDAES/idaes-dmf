@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Command Line Interface for idaes.core.dmf.
+Command Line Interface for idaes_dmf.
 
 Uses "Click" to handle command-line parsing and dispatch.
 """
@@ -36,24 +36,24 @@ import yaml
 import click
 
 # package
-from idaes.core.dmf import DMF, DMFConfig, resource, workspace, create_configuration
-from idaes.core.dmf.resource import Predicates
-from idaes.core.dmf import errors
-from idaes.core.dmf.workspace import Fields
-from idaes.core.dmf import util
-from idaes.core.dmf.util import (
+from idaes_dmf import DMF, DMFConfig, resource, workspace, create_configuration
+from idaes_dmf.resource import Predicates
+from idaes_dmf import errors
+from idaes_dmf.workspace import Fields
+from idaes_dmf import util
+from idaes_dmf.util import (
     ColorTerm,
     yaml_load,
     parse_datetime,
     size_prefix,
 )
-from idaes.core.dmf import datasets
+from idaes_dmf import datasets
 
 __author__ = "Dan Gunter"
 
 _log = logging.getLogger(__name__)
-_dmf_log = logging.getLogger("idaes.core.dmf")
-_timing_log = logging.getLogger("idaes.core.dmf.tm")
+_dmf_log = logging.getLogger("idaes_dmf")
+_timing_log = logging.getLogger("idaes_dmf.tm")
 
 
 class Code(Enum):
@@ -263,7 +263,7 @@ def init(path, create, name, desc, html):
         if not desc:
             desc = click.prompt("New workspace description")
         # Note: default HTML paths, and all other default values, are included
-        # in the JSON schema at `idaes.core.dmf.workspace.CONFIG_SCHEMA`
+        # in the JSON schema at `idaes_dmf.workspace.CONFIG_SCHEMA`
         hpath = [html] if html else None
         try:
             d = DMF(

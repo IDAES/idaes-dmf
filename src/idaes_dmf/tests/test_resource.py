@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Tests for idaes.core.dmf.resource2 module
+Tests for idaes_dmf.resource2 module
 """
 # stdlib
 from datetime import datetime
@@ -25,9 +25,9 @@ import shutil
 import pytest
 
 # local
-from idaes.core.dmf import resource
-from idaes.core.dmf.resource import Predicates
-from idaes.core.dmf.util import mkdtemp
+from idaes_dmf import resource
+from idaes_dmf.resource import Predicates
+from idaes_dmf.util import mkdtemp
 
 # for testing
 from .util import init_logging

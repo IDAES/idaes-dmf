@@ -18,8 +18,8 @@ import logging
 import sys
 
 # package
-from idaes.core.dmf import DMF
-from idaes.core.dmf import errors
+from idaes_dmf import DMF
+from idaes_dmf import errors
 
 __author__ = "Dan Gunter <dkgunter@lbl.gov>"
 

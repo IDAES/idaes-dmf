@@ -231,7 +231,7 @@ class DMF(workspace.Workspace, HasTraits):
 
     For details on the configuration files used by the DMF, see
     documentation for :class:`DMFConfig` (global configuration) and
-    :class:`idaes.core.dmf.workspace.Workspace`.
+    :class:`idaes_dmf.workspace.Workspace`.
     """
 
     db_file = Unicode(help="Database file name")

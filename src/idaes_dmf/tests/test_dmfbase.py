@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Tests for idaes.core.dmf.dmfbase module
+Tests for idaes_dmf.dmfbase module
 
 Skip tests that do chmod() except on Linux, as Windows at least leaves
 the resulting directories in an un-removable state.
@@ -27,11 +27,11 @@ from typing import Union
 import pytest
 
 # package
-from idaes.core.dmf import resource
-from idaes.core.dmf import errors
-from idaes.core.dmf.dmfbase import DMFConfig, DMF
+from idaes_dmf import resource
+from idaes_dmf import errors
+from idaes_dmf.dmfbase import DMFConfig, DMF
 from .util import init_logging
-from idaes.core.dmf.util import NamedTemporaryFile
+from idaes_dmf.util import NamedTemporaryFile
 
 __author__ = "Dan Gunter <dkgunter@lbl.gov>"
 
@@ -68,7 +68,7 @@ scratch_dmf: Union[DMF, None] = None
 
 def setup_module(module):
     global scratch_dir, scratch_dmf
-    scratch_dir = TemporaryDirectory(prefix="idaes.core.dmf_").name
+    scratch_dir = TemporaryDirectory(prefix="idaes_dmf_").name
     scratch_dmf = DMF(path=scratch_dir, create=True)
 
 
@@ -177,7 +177,7 @@ def test_dmf_init_logconf():
     (tmp_dir / DMF.WORKSPACE_CONFIG).open("w").write(
         f"""_id: this-is-a-temporary-config
 logging:
-    idaes.core.dmf.dmfbase:
+    idaes_dmf.dmfbase:
         level: debug
         output: _stderr_
     root:
@@ -187,7 +187,7 @@ logging:
     .dmf.experiment:
         output: _stdout_
     # equivalent to previous
-    idaes.core.dmf.experiment:
+    idaes_dmf.experiment:
         output: {tmp_dir / "experiment.log"}
     # user
     crazy.little.logger:
@@ -208,7 +208,7 @@ _id: this-is-a-temporary-config
 logging:
     root:
         level: debug
-    idaes.core.dmf.util:
+    idaes_dmf.util:
         level: "This is not a valid level"
         output: _stderr_
         """
@@ -220,7 +220,7 @@ _id: this-is-a-temporary-config
 logging:
     root:
         level: debug
-    idaes.core.dmf.util:
+    idaes_dmf.util:
         output: {}
         """.format(
             os.path.join(os.path.sep, *map(str, range(10)))

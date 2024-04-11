@@ -342,13 +342,13 @@ class Resource:
 
         Returns:
             If there are tables, return a dictionary of the form
-            ``{'file': <idaes.core.dmf.tables.Table object>, ...}``.
+            ``{'file': <idaes_dmf.tables.Table object>, ...}``.
             If the table was stored inline in the resource the file will be the
             empty string.
             If there are no tables, this will return an empty dict.
         """
         # pylint: disable-next=import-outside-toplevel
-        from idaes.core.dmf.tables import Table  # avoid circular import
+        from idaes_dmf.tables import Table  # avoid circular import
 
         try:
             tables = Table.from_resource(self)
@@ -357,7 +357,7 @@ class Resource:
         return tables
 
     @property
-    def table(self) -> "idaes.core.dmf.tables.Table":
+    def table(self) -> "idaes_dmf.tables.Table":
         """Convenience attribute for retrieving a table from the resource when you
         know that there is only one. If there are no tables, returns None.
 
@@ -658,7 +658,7 @@ class Resource:
     ):
         """Add a data file that represents tabular data.
 
-        To retrieve this data file (as a :class:`idaes.core.dmf.tables.Table` object),
+        To retrieve this data file (as a :class:`idaes_dmf.tables.Table` object),
         get the `.tables` dict and use `path.name` as the key. For example::
 
             my_resource.add_table("/path/to/my_table.csv")
@@ -681,7 +681,7 @@ class Resource:
         """
         # Avoid circular import
         # pylint: disable-next=import-outside-toplevel
-        from idaes.core.dmf.tables import Table
+        from idaes_dmf.tables import Table
 
         table = Table.read_table(path, inline, file_format)
         # add the table either inline or as a datafile
@@ -924,7 +924,7 @@ def version_list(value):
 
     .. testsetup:: version_list
 
-        from idaes.core.dmf.resource import version_list
+        from idaes_dmf.resource import version_list
 
     .. doctest:: version_list
 
@@ -1024,7 +1024,7 @@ def identifier_str(value=None, allow_prefix=False):
 
     .. testsetup:: idstr
 
-        from idaes.core.dmf.resource import identifier_str
+        from idaes_dmf.resource import identifier_str
 
     .. doctest:: idstr
 

@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Test the `idaes.core.dmf.cli` module.
+Test the `idaes_dmf.cli` module.
 """
 # stdlib
 import logging
@@ -22,7 +22,7 @@ from click.testing import CliRunner
 import pytest
 
 # package
-from idaes.core.dmf import cli
+from idaes_dmf import cli
 
 __author__ = "Dan Gunter"
 

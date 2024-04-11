@@ -11,7 +11,7 @@
 # for full copyright and license information.
 #################################################################################
 """
-Tests for idaes.core.dmf.commands
+Tests for idaes_dmf.commands
 """
 import logging
 import os
@@ -21,8 +21,8 @@ import shutil
 import pytest
 
 #
-from idaes.core.dmf import dmfbase, commands, errors
-from idaes.core.dmf.util import mkdtemp
+from idaes_dmf import dmfbase, commands, errors
+from idaes_dmf.util import mkdtemp
 from .util import init_logging
 
 __author__ = "Dan Gunter"
