@@ -1,0 +1,43 @@
+[build-system]
+requires = [
+    "setuptools >= 64",
+    "setuptools_scm >= 7",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[project]
+name = "idaes-dmf" 
+readme = "README.md"
+dynamic = ["version"]
+dependencies = [
+    # all modules relative to idaes_dmf
+    "click",  # cli
+    "jsonschema",  # commands, resource, workspace
+    "setuptools",  # provides pkg_resources?
+    "traitlets",  # dmfbase
+    "lxml",  # help
+    "seaborn",  # model_data (optional^2)
+    "PyPDF2",  # model_data (optional^2)
+    "colorama",  # util
+    "ipython", # magics,
+    "ipython <= 8.12; python_version == '3.8'",
+    "pyyaml",  # workspace
+    "pandas >= 2, < 3",
+    "numpy >= 1, < 2",
+    "tinydb",  # resourcedb
+    "xlrd",  # tables (implicitly by pandas.read_excel())
+    "openpyxl",  # tables (implicitly by pandas.read_excel())
+]
+[project.optional-dependencies]
+testing = [
+    "pytest",
+    "requests",
+    # idaes_dmf.tests.test_model_data
+    "pyomo",
+    "pint",
+    "idaes-pse",
+]
+[project.scripts]
+dmf = "idaes_dmf.cli:base_command"
